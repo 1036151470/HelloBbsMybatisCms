@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="/jsandcss/jquery.js"></script>
+    <link rel="stylesheet" href=" /jsandcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/jsandcss/bootstrap-theme.css"/>
+    <script src="/jsandcss/bootstrap.js"></script>
+    <link rel="stylesheet" href="/jsandcss/cms.css"/>
+
+</head>
+<body>
+
+<script type="text/javascript">
+    function rightcontext(str) {
+        $.ajax({
+            url: str,
+            type: "get",
+            async: true,
+            beforeSend: function () {
+                $("#showprogss").fadeIn('fast');
+            },
+            success: function (data) {
+                if (data != undefined) {
+                    $("#rightcontext").html(data);
+                }
+                $("#showprogss").fadeOut('fast');
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("#bbs_everythingtotalk").click(function () {
+            rightcontext("/cms/everythingtotalk");
+        });
+        $("#bbs_learnfromothers").click(function () {
+            rightcontext("/cms/learnfromothers");
+        });
+        $("#bbs_codetoshare").click(function () {
+            rightcontext("/cms/codetoshare");
+        });
+        $("#bbs_forandroid").click(function () {
+            rightcontext("/cms/forandroid");
+        });
+        $("#bbs_forweb").click(function () {
+            rightcontext("/cms/forweb");
+        });
+        $("#bbs_forwindows").click(function () {
+            rightcontext("/cms/forwindows");
+        });
+        $("#bbs_forcomplain").click(function () {
+            rightcontext("/cms/forcomplain");
+        });
+        $("#delforcms").click(function () {
+            rightcontext("/cms/forlink");
+        });
+        $("#forlinkadd").click(function () {
+            rightcontext("/cms/forlinkadd");
+        });
+        $("#getallpermission").click(function () {
+            rightcontext("/cms/getallpermission");
+        });
+
+        $("#getalluser").click(function () {
+            rightcontext("/cms/getalluser");
+        });
+
+    });
+
+</script>
+
+
+<div id='showprogss'>
+    <div style="text-align: center;">
+        <h2>正在加载中，请稍等。。。</h2>
+    </div>
+</div>
+
+<#include "navboardcms.html"/>
+<div id="contexttoorder" class="col-md-2 column">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-footer">
+            <a href="#" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>内容管理>></a>
+            <ul  class="nav nav-list collapse in ">
+                <li><a id="bbs_everythingtotalk" href="#">综合讨论</a></li>
+                <li><a id="bbs_learnfromothers" href="#">经验交流</a></li>
+                <li><a id="bbs_codetoshare" href="#">代码片段分享</a></li>
+                <li><a id="bbs_forandroid" href="#">Android开发专区</a></li>
+                <li><a id="bbs_forweb" href="#">Web开发专区</a></li>
+                <li><a id="bbs_forwindows" href="#">Windows开发专区</a></li>
+                <li><a id="bbs_forcomplain" href="#">投诉</a></li>
+            </ul>
+            <br/>
+            <a href="#" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>第三方链接管理>></a>
+            <ul class="nav nav-list collapse in ">
+                <li><a id="delforcms" href="#">删除第三方链接</a></li>
+                <li><a id="forlinkadd" href="#">增加第三方链接</a></li>
+            </ul>
+            <br/>
+            <a href="#" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>权限管理>></a>
+            <ul class="nav nav-list collapse in ">
+                <li><a id="getallpermission" href="#">权限管理</a></li>
+                <li><a id="getalluser" href="#">用户权限管理</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="col-md-10 column">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        </div>
+        <div id="rightcontext" class="panel-footer">
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

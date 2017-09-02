@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/jsandcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/jsandcss/bootstrap-theme.css"/>
+    <script src="/jsandcss/bootstrap.js"></script>
+    <script src="/jsandcss/jquery.js"></script>
+</head>
+
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        权限
+    </div>
+    <div class="panel-footer">
+        <table class="table table-hover">
+
+            <thead>
+            <tr>
+                <th>权限</th>
+                <th>用户</th>
+                <th>用户组</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <#if getallpermiss??>
+                <#list getallpermiss as occc>
+                    <tr>
+                        <td>${occc.permissions!'空白'}</td>
+                        <td>${occc.username!'空白'}</td>
+                        <td>${occc.userroles!'空白'}</td>
+                    </tr>
+
+                </#list>
+            </#if>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+<br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        添加用户组权限
+    </div>
+    <div class="panel-footer">
+
+        <form action="addpermiss" method="post" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="userroles" class="col-sm-2 control-label">用户组名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="userroles" placeholder="请输入用户组名" name="userroles">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="permissname" class="col-sm-2 control-label">权限</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="permissname" placeholder="请输入权限" name="permission">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        删除权限
+    </div>
+    <div class="panel-footer">
+        <table class="table table-hover">
+
+            <thead>
+            <tr>
+                <th>权限</th>
+                <th>用户</th>
+                <th>用户组</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <#if getallpermiss??>
+                <#list getallpermiss as occc>
+                    <tr>
+                        <td>${occc.permissions!'空白'}</td>
+                        <td>${occc.username!'空白'}</td>
+                        <td>${occc.userroles!'空白'}</td>
+                        <td>
+                            <div style="text-align: right;">
+                                <a  href="/cms/removepermiss/${occc.id!''}">
+                                    <button type="button" class="btn btn-primary btn-sm ">删除</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </#list>
+            </#if>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        修改用户组权限
+    </div>
+    <div class="panel-footer">
+        <table class="table table-hover">
+
+            <thead>
+            <tr>
+                <th>权限</th>
+                <th>用户</th>
+                <th>用户组</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <#if getallpermiss??>
+                <#list getallpermiss as occc>
+                    <tr>
+                        <td>${occc.permissions!'空白'}</td>
+                        <td>${occc.username!'空白'}</td>
+                        <td>${occc.userroles!'空白'}</td>
+                        <td>
+                            <div style="text-align: right;">
+                                <a  href="/cms/changepermiss/${occc.id!''}">
+                                    <button type="button" class="btn btn-primary btn-sm ">修改</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </#list>
+            </#if>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

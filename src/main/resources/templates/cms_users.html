@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/jsandcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/jsandcss/bootstrap-theme.css"/>
+    <script src="/jsandcss/bootstrap.js"></script>
+    <script src="/jsandcss/jquery.js"></script>
+</head>
+
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        所有用户
+    </div>
+    <div class="panel-footer">
+        <table class="table table-hover">
+
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户</th>
+                <th>用户组</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <#if getalluser??>
+                <#list getalluser as ouser>
+                    <tr>
+                        <td>${ouser.id!'空白'}</td>
+                        <td>${ouser.username!'空白'}</td>
+                        <td>${ouser.userroles!'空白'}</td>
+                    </tr>
+                </#list>
+            </#if>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        所有用户
+    </div>
+    <div class="panel-footer">
+        <table class="table table-hover">
+
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户</th>
+                <th>用户组</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <#if getalluser??>
+                <#list getalluser as ouser>
+                    <tr>
+                        <td>${ouser.id!'空白'}</td>
+                        <td>${ouser.username!'空白'}</td>
+                        <td>${ouser.userroles!'空白'}</td>
+                        <td>
+                            <div style="text-align: right;">
+                                <a  href="/cms/changeroles/${ouser.id!''}">
+                                    <button type="button" class="btn btn-primary btn-sm ">修改用户组</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </#list>
+            </#if>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

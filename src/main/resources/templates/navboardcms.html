@@ -1,0 +1,27 @@
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-6">
+                <div canvas="container">
+                    <#if justside??>
+                        <img src="${justside.userpics!'/images/small.gif'}" class="img-circle" height="48"/>
+                    </#if>
+                    <#if !justside??>
+                        <img src="${'/images/small.gif'}" class="img-circle" height="48"/>
+                    </#if>
+
+                </div>
+
+            </div>
+
+            <div class="col-xs-6">
+                <p class="text-right">
+                    <a href="/">
+                        <button type="button" class="btn btn-default btn-primary">首页</button>
+                    </a>|||
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>

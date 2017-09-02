@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="/jsandcss/jquery.js"></script>
+    <link rel="stylesheet" href=" /jsandcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/jsandcss/bootstrap-theme.css"/>
+    <script src="/jsandcss/bootstrap.js"></script>
+    <link rel="stylesheet" href="/jsandcss/cms.css"/>
+
+</head>
+<body>
+
+<div id='showprogss'>
+    <div style="text-align: center;">
+        <h2>正在加载中，请稍等。。。</h2>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function loadpage() {
+        var pagestr =$(".forpage").attr('name');
+        $.ajax({
+            url: pagestr,
+            type: "get",
+            async: true,
+            beforeSend: function () {
+                $("#showprogss").fadeIn('fast');
+            },
+            success: function (data) {
+                if (data != undefined) {
+                    $("#rightcontext").html(data);
+                }
+                $("#showprogss").fadeOut('fast');
+            }
+        });
+    }
+    $(document).ready(function () {
+        $(".forpage").click(function () {
+            var str = $(this).attr('name');
+            $.ajax({
+                url: str,
+                type: "get",
+                async: true,
+                beforeSend: function () {
+                    $("#showprogss").fadeIn('fast');
+                },
+                success: function (data) {
+                    if (data != undefined) {
+                        $("#rightcontext").html(data);
+                    }
+                    $("#showprogss").fadeOut('fast');
+                }
+            });
+
+        });
+
+        $(".delid").click(function () {
+            var str = $(this).attr('name');
+            $.ajax({
+                url: str,
+                type: "get",
+                async: true,
+                beforeSend: function () {
+                    $("#showprogss").fadeIn('fast');
+                },
+                success: function (data) {
+                    if (data != undefined) {
+                        loadpage();
+                    }
+                    $("#showprogss").fadeOut('fast');
+                }
+            });
+
+        });
+
+    });
+
+</script>
+
+
+<table class="table table-bordered">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">列表</h3>
+        </div>
+    </div>
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>标题</th>
+        <th>内容</th>
+    </tr>
+    </thead>
+    <tbody>
+    <#if context??>
+
+        <#list context as o>
+            <tr>
+                <td>${o.id!'空白'}</td>
+                <td>${o.title!'空白'}</td>
+                <td>${o.context!'空白'}</td>
+                <td>
+                    <div style="text-align: right;">
+                        <a href="/cms/edit/${dbname!''}/${o.id!''}">
+                        <button type="button" class="btn btn-primary btn-sm ">编辑</button>
+                        </a>
+
+
+                        <span class="delid" name="/cms/delid/${dbname!''}/${o.id!''}">
+                        <button type="button" class="btn btn-primary btn-sm ">删除</button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </#list>
+    </#if>
+    </tbody>
+</table>
+
+<div class="center-block" style="width:200px">
+    <ul class="pagination">
+        <#if list??>
+            <#list list as lo>
+                    <span class="forpage" name="${boardname!''}${lo!''}">
+                    <button type="button" class="btn btn-primary btn-sm ">${lo!''}</button>
+                    </span>
+            </#list>
+        </#if>
+    </ul>
+</div>
+
+
+</body>
+</html>

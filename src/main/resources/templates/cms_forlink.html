@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/jsandcss/bootstrap.css"/>
+    <link rel="stylesheet" href="/jsandcss/bootstrap-theme.css"/>
+    <script src="/jsandcss/bootstrap.js"></script>
+    <script src="/jsandcss/jquery.js"></script>
+</head>
+
+<body>
+
+
+<#if forlink??>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            友情链接
+        </div>
+        <div class="panel-footer">
+
+            <table class="table table-hover">
+
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>图片</th>
+                <th>链接地址</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <#list forlink as occ>
+                <tr>
+                    <td>${occ.id!'空白'}</td>
+                    <td><img src="${occ.pics!'空白'}" class="img-circle" height="48"/></td>
+                    <td>${occ.address!'空白'}</td>
+                    <td>
+                        <div style="text-align: right;">
+                            <a  href="/cms/delforcmsid/${occ.id!''}">
+                                <button type="button" class="btn btn-primary btn-sm ">删除</button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+            </#list>
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+</#if>
+
+
+</body>
+</html>

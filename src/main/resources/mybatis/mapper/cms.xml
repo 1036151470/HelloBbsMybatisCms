@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cms">
+    <sql id="Base_read" >
+        pics, adress,name
+    </sql>
+    <sql id="Base_values" >
+        #{pics},#{adress},#{name}
+    </sql>
+
+
+    <delete id="delid" parameterType="int">
+        DELETE FROM ${dbname} WHERE id=${id}
+    </delete>
+
+    <select id="edit" parameterType="int" resultType="Boardcontext">
+        SELECT *FROM ${dbname} WHERE id=${id}
+    </select>
+
+    <select id="forlink" resultType="Forlink">
+        SELECT *FROM bbs_forlink
+    </select>
+
+    <delete id="delforcmsid" parameterType="int">
+        DELETE FROM bbs_forlink WHERE id=${id}
+    </delete>
+
+    <insert id="forlinkadd" parameterType="Forlink">
+        INSERT INTO bbs_forlink(<include refid="Base_read" />) VALUES (<include refid="Base_values" />)
+    </insert>
+
+    <select id="getalluser" resultType="User">
+        SELECT *FROM bbs_user
+    </select>
+
+    <select id="getoneuser" parameterType="int" resultType="User">
+        SELECT *FROM bbs_user WHERE id=#{id}
+    </select>
+
+    <update id="updateoneuser" parameterType="User" >
+        update bbs_user set userroles=#{userroles} where id=#{id}
+    </update>
+
+    <select id="getallpermission" parameterType="String" resultType="Permission">
+        select bbs_user.username,bbs_userpermission.* from bbs_user,bbs_userpermission where bbs_user.userroles=bbs_userpermission.userroles
+    </select>
+
+    <insert id="addpermission" parameterType="Permission">
+        INSERT INTO bbs_userpermission(userroles,permissions) VALUES (#{userroles},#{permissions})
+    </insert>
+
+    <delete id="removepermiss" parameterType="int">
+        DELETE FROM bbs_userpermission WHERE id=#{id}
+    </delete>
+
+    <select id="getonepermiss" parameterType="int" resultType="Permission">
+        SELECT *FROM bbs_userpermission WHERE id=#{id}
+    </select>
+
+</mapper>
